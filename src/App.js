@@ -2,6 +2,7 @@ import React from "react";
 import { ChakraProvider, Box, Flex, theme, VStack } from "@chakra-ui/react";
 import Sidebar from "./components/Sidebar";
 import ChatList from "./components/ChatList";
+import NewChat from "./components/NewChat";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 import "./App.css";
@@ -22,9 +23,11 @@ function App() {
           {/* Main content area */}
           <Flex direction="column" flex="1" p={3} overflowY="auto">
             {/* Chat List */}
-            <Box flex="1">
+            <Box flex="1" overflowY="auto">
               <ChatList />
             </Box>
+            {/* New Chat Input Area */}
+            <NewChat />
           </Flex>
         </Flex>
       </Box>
