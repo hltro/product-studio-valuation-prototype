@@ -25,9 +25,8 @@ function App() {
     setSelectedCategory(selectedCategory === category ? null : category);
   };
 
-  // Adjust the height of the Sidebar to be a little less than 100vh to give whitespace
-  const sidebarHeight = "calc(100vh - 32px)"; // Adjust '32px' to increase/decrease whitespace
-  const borderRadiusValue = "16px"; // Adjust for desired rounded corners
+  const sidebarHeight = "calc(100vh - 32px)";
+  const borderRadiusValue = "16px";
 
   return (
     <ChakraProvider theme={theme}>
@@ -37,13 +36,12 @@ function App() {
         bg={useColorModeValue("white", "gray.800")}
       >
         <Flex justify="center" align="center" h="100vh" p={3}>
-          {/* Sidebar with rounded corners */}
           <Box
             bg={sidebarBgColor}
             h={sidebarHeight}
             p={2}
             borderRadius={borderRadiusValue}
-            boxShadow="base" // Optional: adds shadow for better separation
+            boxShadow="base"
           >
             <VStack h="full" justify="space-between">
               {" "}
@@ -63,7 +61,7 @@ function App() {
               h={sidebarHeight}
               overflowY="auto"
               borderRadius={borderRadiusValue}
-              boxShadow="base" // Optional: adds shadow for better separation
+              boxShadow="base"
             >
               <ExpandableList category={selectedCategory} />
             </Box>
@@ -74,7 +72,6 @@ function App() {
             <Box w="full">
               <ChatList />
             </Box>
-            {/* Add vertical margin to create space between ChatList and NewChat */}
             <Box w="full" mt={1}>
               <NewChat />
             </Box>
