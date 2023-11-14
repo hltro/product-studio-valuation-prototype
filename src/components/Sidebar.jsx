@@ -17,7 +17,7 @@ import { AiOutlineCalculator, AiTwotoneSetting, AiOutlineSearch } from 'react-ic
 function Sidebar({ onSelectCategory }) {
   const sidebarBgColor = useColorModeValue('gray.100', 'gray.700');
   const sidebarTextColor = useColorModeValue('gray.600', 'gray.200');
-  const dividerColor = useColorModeValue('gray.300', 'gray.600');
+  const dividerColor = useColorModeValue('gray.600', 'gray.200');
   const hoverBgColor = useColorModeValue('gray.200', 'gray.600');
 
   const iconSize = '28px';

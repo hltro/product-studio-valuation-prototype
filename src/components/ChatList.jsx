@@ -26,6 +26,7 @@ function ChatList() {
       overflowY="auto"
       spacing={4}
       align="stretch"
+      borderRadius="16px"
     >
       {messages.map((message) => (
         <Flex

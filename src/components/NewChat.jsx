@@ -48,6 +48,7 @@ function NewChat() {
       bg="blue.50"
       align="center"
       w="full"
+      borderRadius="16px"
     >
       <Input
         placeholder="Type your message here..."
