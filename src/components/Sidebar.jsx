@@ -3,18 +3,18 @@ import {
   Box,
   VStack,
   Button,
-  Divider,
-  useColorModeValue,
-  Text,
   Heading,
+  Text,
+  Divider,
+  Badge,
   HStack,
-  Badge
+  useColorModeValue
 } from '@chakra-ui/react';
 import { BiConversation } from 'react-icons/bi';
 import { DiGoogleAnalytics } from 'react-icons/di';
 import { AiOutlineCalculator, AiTwotoneSetting } from 'react-icons/ai';
 
-function Sidebar() {
+function Sidebar({ onSelectCategory }) {
   const sidebarBgColor = useColorModeValue('gray.100', 'gray.700');
   const sidebarTextColor = useColorModeValue('gray.600', 'gray.200');
   const dividerColor = useColorModeValue('gray.300', 'gray.600');
@@ -27,6 +27,13 @@ function Sidebar() {
   // Mock numbers for demonstration purposes
   const pastChatsCount = 5;
   const valuationModelsCount = 3;
+
+  const menuItems = [
+    { icon: BiConversation, text: 'Past Chats', count: pastChatsCount },
+    { icon: AiOutlineCalculator, text: 'Valuation Models', count: valuationModelsCount },
+    { icon: DiGoogleAnalytics, text: 'Analytics' },
+    { icon: AiTwotoneSetting, text: 'Setting' },
+  ];
 
   return (
     <Box
@@ -42,14 +49,9 @@ function Sidebar() {
         <Text fontSize="xl" color="#f0ab3c" fontWeight='bold'>CA Ventures</Text>
         <Divider my={4} borderColor={dividerColor} />
         {/* Menu Items */}
-        {[
-          { icon: BiConversation, text: 'Past Chats', count: pastChatsCount },
-          { icon: AiOutlineCalculator, text: 'Valuation Models', count: valuationModelsCount },
-          { icon: DiGoogleAnalytics, text: 'Analytics' },
-          { icon: AiTwotoneSetting, text: 'Setting' },
-        ].map((item, index) => (
+        {menuItems.map((item) => (
           <Button
-            key={index}
+            key={item.text}
             variant="ghost"
             justifyContent="flex-start"
             iconSpacing={4}
@@ -57,11 +59,14 @@ function Sidebar() {
             fontSize={fontSize}
             _hover={{ bg: hoverBgColor }}
             w="full"
-            rightIcon={item.count ? (
-              <Badge colorScheme="green" ml={1} sx={{ fontSize: badgeFontSize }}>
-                {item.count}
-              </Badge>
-            ) : null}
+            onClick={() => onSelectCategory(item.text)}
+            rightIcon={
+              item.count !== undefined ? (
+                <Badge colorScheme="green" ml={1} sx={{ fontSize: badgeFontSize }}>
+                  {item.count}
+                </Badge>
+              ) : null
+            }
           >
             <HStack>
               <Box as={item.icon} size={iconSize} />
