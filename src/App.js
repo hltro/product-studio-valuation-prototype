@@ -29,12 +29,7 @@ function App() {
       <Box textAlign="center" fontSize="xl">
         <Flex h="100vh">
           {/* Sidebar */}
-          <Box
-            w={{ base: "full", md: "250px" }}
-            bg={sidebarBgColor}
-            p={4}
-            h="full"
-          >
+          <Box bg={sidebarBgColor} p={3} h="full">
             <Sidebar onSelectCategory={handleSelectCategory} />
             <Box mt="auto" p={4}>
               <ColorModeSwitcher justifySelf="flex-start" />
@@ -57,9 +52,7 @@ function App() {
           {/* Main content area for ChatList and NewChat */}
           <Flex direction="column" flex="1" p={3} overflowY="auto">
             <ChatList />
-            <Box p={3}>
-              <NewChat />
-            </Box>
+            <NewChat />
           </Flex>
         </Flex>
       </Box>
