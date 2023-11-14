@@ -1,0 +1,13 @@
+/* App.css */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .menu-item.active {
+    background-color: #555;
+
+  }
+
+  
