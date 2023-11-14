@@ -39,7 +39,7 @@ function NewChat() {
 
   // To-Do: Function to handle voice input
   const handleVoiceInput = () => {
-    // To-Do: Implement voice input logic
+    // Implement voice input logic
   };
 
   return (

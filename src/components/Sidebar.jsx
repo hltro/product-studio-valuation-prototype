@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { BiConversation } from 'react-icons/bi';
 import { DiGoogleAnalytics } from 'react-icons/di';
-import { AiOutlineCalculator, AiTwotoneSetting } from 'react-icons/ai';
+import { AiOutlineCalculator, AiTwotoneSetting, AiOutlineSearch } from 'react-icons/ai';
 
 function Sidebar({ onSelectCategory }) {
   const sidebarBgColor = useColorModeValue('gray.100', 'gray.700');
@@ -31,7 +31,7 @@ function Sidebar({ onSelectCategory }) {
   const menuItems = [
     { icon: BiConversation, text: 'Past Chats', count: pastChatsCount },
     { icon: AiOutlineCalculator, text: 'Valuation Models', count: valuationModelsCount },
-    { icon: DiGoogleAnalytics, text: 'Analytics' },
+    { icon: AiOutlineSearch, text: 'Search' },
     { icon: AiTwotoneSetting, text: 'Setting' },
   ];
 
