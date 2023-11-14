@@ -4,11 +4,12 @@ import {
   VStack,
   Button,
   useColorModeValue,
+  Text,
   Heading
 } from '@chakra-ui/react';
 import { BiConversation } from 'react-icons/bi';
 import { DiGoogleAnalytics } from 'react-icons/di';
-import { AiOutlineCalculator } from 'react-icons/ai';
+import { AiOutlineCalculator,AiTwotoneSetting } from 'react-icons/ai';
 
 function Sidebar() {
   const sidebarBgColor = useColorModeValue('gray.100', 'gray.700');
@@ -26,9 +27,12 @@ function Sidebar() {
       color={sidebarTextColor}
     >
       <VStack spacing={4} align="stretch">
-        <Heading size="lg" mb={4}> 
-          Valuation Chatbot | CA Ventures
+        <Heading size="xl" mb={2}> 
+          Valuation Chatbot
         </Heading>
+        <Text fontSize="20px" color="#f0ab3c" fontWeight='bold'> 
+          CA Ventures
+        </Text>
         {/* Menu Items */}
         <Button
           variant="ghost"
@@ -56,6 +60,15 @@ function Sidebar() {
           size="lg" 
         >
           Analytics
+        </Button>
+        <Button
+          variant="ghost"
+          leftIcon={<AiTwotoneSetting size={iconSize} />}
+          justifyContent="flex-start"
+          iconSpacing={4}
+          size="lg" 
+        >
+          Setting
         </Button>
       </VStack>
     </Box>
