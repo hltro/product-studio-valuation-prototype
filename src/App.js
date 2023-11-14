@@ -3,8 +3,8 @@ import {
   ChakraProvider,
   Box,
   Flex,
-  theme,
   VStack,
+  theme,
   useColorModeValue,
 } from "@chakra-ui/react";
 import Sidebar from "./components/Sidebar";
@@ -20,35 +20,34 @@ function App() {
 
   const sidebarBgColor = useColorModeValue("gray.100", "gray.700");
   const expandableListBgColor = useColorModeValue("white", "gray.800");
+  const borderRadiusValue = "16px";
+  const boxShadowValue = useColorModeValue("base", "dark-lg");
 
   const handleSelectCategory = (category) => {
     setSelectedCategory(selectedCategory === category ? null : category);
   };
 
   const sidebarHeight = "calc(100vh - 32px)";
-  const borderRadiusValue = "16px";
 
   return (
     <ChakraProvider theme={theme}>
       <Box
         textAlign="center"
         fontSize="xl"
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("gray.50", "gray.800")}
       >
-        <Flex justify="center" align="center" h="100vh" p={3}>
+        <Flex justify="center" align="center" h="100vh">
+          {/* Sidebar with rounded corners */}
           <Box
             bg={sidebarBgColor}
             h={sidebarHeight}
             p={2}
             borderRadius={borderRadiusValue}
-            boxShadow="base"
+            boxShadow={boxShadowValue}
+            m={2}
           >
             <VStack h="full" justify="space-between">
-              {" "}
-              {/* Stack for internal alignment */}
-              <Box w="full">
-                <Sidebar onSelectCategory={handleSelectCategory} />
-              </Box>
+              <Sidebar onSelectCategory={handleSelectCategory} />
               <ColorModeSwitcher justifySelf="flex-end" />
             </VStack>
           </Box>
@@ -61,21 +60,22 @@ function App() {
               h={sidebarHeight}
               overflowY="auto"
               borderRadius={borderRadiusValue}
-              boxShadow="base"
+              boxShadow={boxShadowValue}
+              m={2}
             >
               <ExpandableList category={selectedCategory} />
             </Box>
           )}
 
           {/* Main content area for ChatList and NewChat */}
-          <VStack flex="1" p={2} overflowY="auto">
-            <Box w="full">
+          <Flex direction="column" flex="1" overflowY="auto" p={2}>
+            <Box w="full" pt={8} pb={2} px={2}>
               <ChatList />
             </Box>
-            <Box w="full" mt={1}>
+            <Box w="full" pt={2} pb={7} px={2}>
               <NewChat />
             </Box>
-          </VStack>
+          </Flex>
         </Flex>
       </Box>
     </ChakraProvider>

@@ -10,7 +10,7 @@ const messages = [
 ];
 
 function ChatList() {
-  const bgColor = useColorModeValue('gray.100', 'gray.800'); // Darker background for dark mode
+  const bgColor = useColorModeValue('gray.100', 'gray.700'); // Darker background for dark mode
   const userMessageColor = useColorModeValue('blue.600', 'blue.300'); // Lighter blue for dark mode
   const appMessageColor = useColorModeValue('gray.200', 'gray.600'); // Darker gray for app messages in dark mode
   const userTextColor = useColorModeValue('white', 'gray.50'); // White text for user in light mode
