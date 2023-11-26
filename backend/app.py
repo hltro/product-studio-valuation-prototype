@@ -5,10 +5,6 @@ import os
 app = Flask(__name__)
 chatbots = {}
 
-def get_projection_input(path):
-    with open(path, 'r') as file:
-        csv_content = file.read()
-    return csv_content
 
 #example for running the conversation chain
 '''
@@ -34,12 +30,6 @@ def get_llm_answer():
     # Extract user_id and input_string from the request JSON
     user_id = request.json.get('user_id')
     input_string = request.json.get('input_string')
-    csv_paths = [
-    'dcf/senior_care/projections/all_fte_projections.csv',
-    'dcf/senior_care/projections/all_occupancy_projections.csv',
-    'dcf/senior_care/projections/all_rate_projections.csv'
-]   
-
     # Retrieve the OpenAI API key securely
     openai_api_key = os.getenv('OPENAI_API_KEY')
     '''
@@ -51,11 +41,6 @@ def get_llm_answer():
     # Check if the chatbot exists for this user_id, else create it
     if user_id not in chatbots:
         chatbots[user_id] = create_chain(openai_api_key)
-        all_fte_projections_str = get_projection_input(csv_paths[0])
-        all_occupancy_projections_str = get_projection_input(csv_paths[1])
-        all_rate_projections_str = get_projection_input(csv_paths[2])
-        projection_string = all_fte_projections_str+all_occupancy_projections_str+all_rate_projections_str
-        chatbots[user_id].run(projection_string)
 
     # Process the string
     output_string = chatbots[user_id].run(input_string)
