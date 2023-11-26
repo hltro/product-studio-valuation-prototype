@@ -42,6 +42,11 @@ def get_llm_answer():
 
     # Retrieve the OpenAI API key securely
     openai_api_key = os.getenv('OPENAI_API_KEY')
+    '''
+    Another way would be: 
+    openai_api_key = 'your secret key'
+    But openai doesn't allow users to push their openai secret key to Github
+    '''
 
     # Check if the chatbot exists for this user_id, else create it
     if user_id not in chatbots:
