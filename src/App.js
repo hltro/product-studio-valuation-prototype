@@ -29,6 +29,18 @@ function App() {
 
   const sidebarHeight = "calc(100vh - 32px)";
 
+  // Handle messages
+  const [messages, setMessages] = useState([]);
+
+  const handleNewMessage = (newMessageText, isUser) => {
+    const newMessage = {
+      id: messages.length + 1,
+      text: newMessageText,
+      isUser: isUser,
+    };
+    setMessages([...messages, newMessage]);
+  };
+
   return (
     <ChakraProvider theme={theme}>
       <Box
@@ -70,10 +82,10 @@ function App() {
           {/* Main content area for ChatList and NewChat */}
           <Flex direction="column" flex="1" overflowY="auto" p={2}>
             <Box w="full" pt={8} pb={2} px={2}>
-              <ChatList />
+              <ChatList messages={messages} />
             </Box>
             <Box w="full" pt={2} pb={7} px={2}>
-              <NewChat />
+              <NewChat onSendNewMessage={handleNewMessage} />
             </Box>
           </Flex>
         </Flex>

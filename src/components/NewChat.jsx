@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Input, IconButton, Flex, useColorModeValue } from '@chakra-ui/react';
 import { AiOutlineSend, AiOutlineFile, AiOutlineAudio } from 'react-icons/ai';
 
-function NewChat() {
+function NewChat(props) {
+  const [message, setMessage] = useState(''); // Initialize an empty message
   const fileInputRef = useRef(null);
 
   // Define colors using useColorModeValue
@@ -11,9 +12,32 @@ function NewChat() {
   const iconButtonBg = useColorModeValue('blue.200', 'gray.600'); // Example for the icon button bg in dark mode
   const iconColor = useColorModeValue('gray.500', 'white'); // Adjust icon color for dark mode
 
-  // To-Do: Function to handle sending a new message or starting a new chat
+  // Inside NewChat component
+  const [inputText, setInputText] = useState('');
+
+  const handleSendClick = () => {
+    if (inputText.trim() !== '') {
+      props.onSendNewMessage(inputText, true); // true indicates it's a user message
+      setInputText(''); // Clear the input after sending
+    }
+  };
+
+    // Function to handle sending a new message
   const handleSend = () => {
-    // Implement sending message logic
+    // Implement sending message logic using the 'message' state variable
+    // You can access the message using 'message' variable
+    console.log('Sending message:', message);
+    
+    // Clear the input field after sending the message
+    setMessage('');
+  };
+
+  // Function to handle "Enter" key press
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      // Call the 'handleSend' function when the "Enter" key is pressed
+      handleSend();
+    }
   };
 
   // To-Do: Function to handle file input click
@@ -26,7 +50,7 @@ function NewChat() {
     // Implement file send logic
   };
 
-  // To-Do: Function to handle voice input
+  // // To-Do: Function to handle voice input
   const handleVoiceInput = () => {
     // Implement voice input logic
   };
@@ -34,20 +58,22 @@ function NewChat() {
   return (
     <Flex
       p={4}
-      bg={inputBgColor} // Use the color mode value for background
+      bg={inputBgColor} 
       align="center"
       w="full"
       borderRadius="16px"
     >
       <Input
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
         placeholder="Type your message here..."
         size="lg" 
         mr={2}
         flex={1} 
         height="60px" 
         fontSize="lg"
-        bg={inputBgColor} // Use the color mode value for input background
-        color={inputTextColor} // Use the color mode value for text color
+        bg={inputBgColor} 
+        color={inputTextColor} 
       />
       <input
         ref={fileInputRef}
@@ -60,24 +86,24 @@ function NewChat() {
         onClick={handleFileClick}
         mr={2}
         size="lg"
-        bg={iconButtonBg} // Use the color mode value for icon button background
-        color={iconColor} // Icon color
+        bg={iconButtonBg} 
+        color={iconColor} 
       />
       <IconButton
         icon={<AiOutlineAudio size="24px" />}
         onClick={handleVoiceInput}
         mr={2}
         size="lg"
-        bg={iconButtonBg} // Use the color mode value for icon button background
-        color={iconColor} // Icon color
+        bg={iconButtonBg} 
+        color={iconColor} 
       />
       <IconButton
         icon={<AiOutlineSend size="24px" />}
         colorScheme="blue"
-        onClick={handleSend}
+        onClick={handleSendClick}
         size="lg"
-        bg={iconButtonBg} // Use the color mode value for icon button background
-        color={iconColor} // Icon color
+        bg={iconButtonBg} 
+        color={iconColor} 
       />
     </Flex>
   );

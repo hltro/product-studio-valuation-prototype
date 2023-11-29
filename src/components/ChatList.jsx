@@ -9,7 +9,7 @@ const messages = [
   { id: 4, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', isUser: false },
 ];
 
-function ChatList() {
+function ChatList(props) {
   const bgColor = useColorModeValue('gray.100', 'gray.700'); // Darker background for dark mode
   const userMessageColor = useColorModeValue('blue.600', 'blue.300'); // Lighter blue for dark mode
   const appMessageColor = useColorModeValue('gray.200', 'gray.600'); // Darker gray for app messages in dark mode
@@ -28,7 +28,7 @@ function ChatList() {
       align="stretch"
       borderRadius="16px"
     >
-      {messages.map((message, index) => (
+      {props.messages.map((message, index) => (
         <Box key={index} w="full">
           <Flex
             direction="column"
