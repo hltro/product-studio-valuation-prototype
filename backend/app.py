@@ -1,12 +1,16 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from chain import create_chain
 import os
 
 app = Flask(__name__)
+# Allow CORS for all domains on a specific route
+cors = CORS(app, resources={
+            r"/get_llm_answer": {"origins": "http://localhost:3000"}})
 chatbots = {}
 
 
-#example for running the conversation chain
+# example for running the conversation chain
 '''
 def run():
     openai_api_key = "" #your own openai api key
@@ -24,6 +28,14 @@ def run():
     conversation.run(input)
     return conversation.run("what about the projection for the medication care manager in August 2023? ")
 '''
+
+# Route for the root URL
+
+
+@app.route('/')
+def home():
+    return 'Welcome to my application!'
+
 
 @app.route('/get_llm_answer', methods=['POST'])
 def get_llm_answer():
@@ -48,9 +60,10 @@ def get_llm_answer():
     # Return the processed string
     return jsonify({"output_string": output_string})
 
+
 if __name__ == '__main__':
     # Use an environment variable to set the Flask environment
-    #test function
+    # test function
     '''
     output = run()
     print(output)

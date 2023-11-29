@@ -16,29 +16,57 @@ import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import "./App.css";
 
 function App() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
   const sidebarBgColor = useColorModeValue("gray.100", "gray.700");
   const expandableListBgColor = useColorModeValue("white", "gray.800");
   const borderRadiusValue = "16px";
   const boxShadowValue = useColorModeValue("base", "dark-lg");
+  const sidebarHeight = "calc(100vh - 32px)";
 
+  // Handle category selection
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const handleSelectCategory = (category) => {
     setSelectedCategory(selectedCategory === category ? null : category);
   };
 
-  const sidebarHeight = "calc(100vh - 32px)";
-
   // Handle messages
   const [messages, setMessages] = useState([]);
 
-  const handleNewMessage = (newMessageText, isUser) => {
-    const newMessage = {
-      id: messages.length + 1,
-      text: newMessageText,
-      isUser: isUser,
-    };
-    setMessages([...messages, newMessage]);
+  const handleNewMessage = async (newMessageText, isUser) => {
+    if (isUser) {
+      // Send the user's message to the backend and await the response
+      try {
+        const response = await fetch("http://localhost:5000/get_llm_answer", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: newMessageText }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        // Assuming responseData contains the AI's reply in a field named 'reply'
+        const aiReply = responseData.reply;
+
+        // Add the AI's reply to the messages state
+        setMessages([
+          ...messages,
+          { id: messages.length + 1, text: aiReply, isUser: false },
+        ]);
+      } catch (error) {
+        console.error("Failed to fetch AI response:", error);
+      }
+    }
+
+    // Add the user's message to the messages state
+    setMessages([
+      ...messages,
+      { id: messages.length + 1, text: newMessageText, isUser },
+    ]);
   };
 
   return (
@@ -49,7 +77,6 @@ function App() {
         bg={useColorModeValue("gray.50", "gray.800")}
       >
         <Flex justify="center" align="center" h="100vh">
-          {/* Sidebar with rounded corners */}
           <Box
             bg={sidebarBgColor}
             h={sidebarHeight}

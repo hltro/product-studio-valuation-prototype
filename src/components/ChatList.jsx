@@ -1,13 +1,13 @@
 import React from 'react';
 import { Box, Flex, Text, useColorModeValue, HStack, VStack, Avatar } from '@chakra-ui/react';
 
-// Mock data to display messages
-const messages = [
-  { id: 1, text: 'How do I evaluate a commercial real estate property?', isUser: true },
-  { id: 2, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ', isUser: false },
-  { id: 3, text: 'How do I evaluate a commercial real estate property?', isUser: true },
-  { id: 4, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', isUser: false },
-];
+// // Mock data to display messages
+// const messages = [
+//   { id: 1, text: 'How do I evaluate a commercial real estate property?', isUser: true },
+//   { id: 2, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ', isUser: false },
+//   { id: 3, text: 'How do I evaluate a commercial real estate property?', isUser: true },
+//   { id: 4, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', isUser: false },
+// ];
 
 function ChatList(props) {
   const bgColor = useColorModeValue('gray.100', 'gray.700'); // Darker background for dark mode
@@ -15,7 +15,7 @@ function ChatList(props) {
   const appMessageColor = useColorModeValue('gray.200', 'gray.600'); // Darker gray for app messages in dark mode
   const userTextColor = useColorModeValue('white', 'gray.50'); // White text for user in light mode
   const appTextColor = useColorModeValue('gray.700', 'gray.50'); // Very light text for dark mode
-  const realEstateAgentName = 'Real Estate Agent Alina';
+  const realEstateAgentName = 'User';
   const chatbotName = 'Valuation Assistant';
 
   return (
