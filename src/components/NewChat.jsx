@@ -18,17 +18,13 @@ function NewChat(props) {
   const handleSendClick = () => {
     if (inputText.trim() !== '') {
       props.onSendNewMessage(inputText, true); // true indicates it's a user message
-      setInputText(''); // Clear the input after sending
+      setInputText(''); 
     }
   };
 
     // Function to handle sending a new message
   const handleSend = () => {
-    // Implement sending message logic using the 'message' state variable
-    // You can access the message using 'message' variable
     console.log('Sending message:', message);
-    
-    // Clear the input field after sending the message
     setMessage('');
   };
 
@@ -66,6 +62,11 @@ function NewChat(props) {
       <Input
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            handleSendClick(); // Call the 'handleSendClick' function when Enter is pressed
+          }
+        }}
         placeholder="Type your message here..."
         size="lg" 
         mr={2}
